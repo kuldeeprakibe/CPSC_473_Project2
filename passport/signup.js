@@ -10,7 +10,7 @@ module.exports = function(passport){
         function(req, username, password, done) {
 
             findOrCreateUser = function(){
-                User.findOne({ 'username' :  username }, function(err, user) {
+                User.User.findOne({ 'username' :  username }, function(err, user) {
                     if (err){
                         console.log('Error in SignUp: '+err);
                         return done(err);
@@ -19,7 +19,7 @@ module.exports = function(passport){
                         console.log('User already exists with username: '+username);
                         return done(null, false, req.flash('message','User Already Exists'));
                     } else {
-                        var newUser = new User();
+                        var newUser = new User.User();
 
                         newUser.username = username;
                         newUser.password = createHash(password);
